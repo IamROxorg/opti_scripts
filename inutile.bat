@@ -327,3 +327,13 @@ for %%X in (
 ) do (
     logman stop %%X -ets
 )
+
+
+REM Désactive l'historique des recherches
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\SearchSettings" /v IsDeviceSearchHistoryEnabled /t REG_DWORD /d 0 /f
+
+REM Crée la clé nécessaire pour désactiver les suggestions Web dans la recherche (si pas déjà existante)
+reg add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer" /f
+
+REM Désactive les suggestions de recherche (comme Bing)
+reg add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d 1 /f
