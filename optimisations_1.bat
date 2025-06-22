@@ -25,3 +25,6 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\mouclass\Parameters" /v MouseDat
 
 REM - Disabling Fault Tolerant Heap
 reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\FTH" /v Enabled /t REG_DWORD /d 0 /f >nul 2>&1
+
+REM - Enabling HAGS
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" /t REG_DWORD /d 2 /f >nul 2>&1
