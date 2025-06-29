@@ -367,3 +367,13 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\Autologger\WdiC
 
 REM - Disabling AppBackgroundTaskDiagnosticLog
 powershell -NoProfile -ExecutionPolicy Bypass -Command "Disable-AppBackgroundTaskDiagnosticLog"
+
+REM - Add creeating Bat Reg files without renaming
+
+mkdir C:\Windows\ShellNew 2>nul
+echo @echo off > C:\Windows\ShellNew\template.bat
+echo Windows Registry Editor Version 5.00 > C:\Windows\ShellNew\template.reg
+reg add "HKCR\.bat\ShellNew" /v FileName /t REG_SZ /d "C:\Windows\ShellNew\template.bat" /f
+reg delete "HKCR\.bat\ShellNew" /v NullFile /f >nul 2>&1
+reg add "HKCR\.reg\ShellNew" /v FileName /t REG_SZ /d "C:\Windows\ShellNew\template.reg" /f
+reg delete "HKCR\.reg\ShellNew" /v NullFile /f >nul 2>&1
