@@ -1,3 +1,5 @@
+REM WARNING this theoretically should boost performance but i cant guarantee it.
+
 REM Disabling useless things on disk
 fsutil behavior set disable8dot3 1
 fsutil behavior set DisableDeleteNotify 0
