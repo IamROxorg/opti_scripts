@@ -325,7 +325,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\SQMLogger" /v "Sta
 REM Disabling AppBackgroundTaskDiagnosticLog
 powershell -NoProfile -ExecutionPolicy Bypass -Command "Disable-AppBackgroundTaskDiagnosticLog"
 
-REM Add creeating Bat Reg files directly
+REM Add creating Bat Reg files directly
 
 mkdir C:\Windows\ShellNew 2>nul
 echo @echo off > C:\Windows\ShellNew\template.bat
