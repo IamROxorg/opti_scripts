@@ -1,4 +1,4 @@
-REM ⚠️ These tweaks are meant to improve performance, but no guarantees — use at your own risk.
+REM ⚠️ These tweaks are meant to improve performance, but no guarantees use at your own risk.
 
 REM -- Disable useless file system features to reduce overhead
 fsutil behavior set disable8dot3 1
@@ -22,11 +22,11 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProf
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Scheduling Category" /t REG_SZ /d High /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "SFIO Priority" /t REG_SZ /d High /f
 
-REM -- Set system-wide CPU priority balance
+REM -- Set CPU priority balance
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d 38 /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v SystemResponsiveness /t REG_DWORD /d 10 /f
 
-REM -- Lower input latency by reducing input buffer size (keyboard and mouse)
+REM -- Lower input latency by reducing input buffer size
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\kbdclass\Parameters" /v KeyboardDataQueueSize /t REG_DWORD /d 0x13 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\mouclass\Parameters" /v MouseDataQueueSize /t REG_DWORD /d 0x13 /f
 
