@@ -28,3 +28,4 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\NvTelemetry" /
 
 REM Disable the NvTelemetryContainer service via registry (if present)
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\NvTelemetryContainer" /v "Start" /t REG_DWORD /d 4 /f
+pause
