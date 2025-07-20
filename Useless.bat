@@ -1,8 +1,26 @@
 REM Yo this disable some useless things like telemetry and other things you will NEVER use feel free to read the code
 
-REM Disable telemetry services
+
+rem Disable telemetry services
+sc stop DiagTrack
+sc config DiagTrack start= disabled
 sc delete DiagTrack
+
+sc stop dmwappushservice
+sc config dmwappushservice start= disabled
 sc delete dmwappushservice
+
+sc stop WaaSMedicSvc
+sc config WaaSMedicSvc start= disabled
+sc delete WaaSMedicSvc
+
+sc stop DiagSvc
+sc config DiagSvc start= disabled
+sc delete DiagSvc
+
+sc stop diagnosticshub.standardcollector.service
+sc config diagnosticshub.standardcollector.service start= disabled
+sc delete diagnosticshub.standardcollector.service
 
 REM Reset diagtrack
 echo "" > C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl
