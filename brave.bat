@@ -24,4 +24,12 @@ reg add "HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave" /v BraveVPNDi
 reg add "HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave" /v BraveAIChatEnabled /t REG_DWORD /d 0 /f
 reg add "HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave" /v PasswordManagerEnabled /t REG_DWORD /d 0 /f
 reg add "HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave" /v TorDisabled /t REG_DWORD /d 0 /f
+
+sc stop BraveUpdate 
+sc stop BraveElevationService
+sc config BraveUpdate start= disabled 
+sc config BraveElevationService start= disabled
+sc delete BraveUpdate >nul 2>&1
+sc delete BraveElevationService >nul 2>&1
+del /f /q "C:\Program Files (x86)\BraveSoftware\Update\BraveUpdate.exe"
 pause
