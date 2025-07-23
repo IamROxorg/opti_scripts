@@ -2,11 +2,11 @@ REM Optimizing Brave Browser
 REM killing Brave 
 taskkill /IM brave.exe /F >nul 2>&1
 REM Delete Logs
-del /f /q "%drive%:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\debug.log"
-rmdir /s /q "%drive%:\Program Files (x86)\BraveSoftware\Brave-Browser\Update\CrashReports"
-rmdir /s /q "%drive%:\Program Files (x86)\BraveSoftware\Brave-Browser\Update\Temp"
+del /f /q "C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\debug.log"
+rmdir /s /q "C:\Program Files (x86)\BraveSoftware\Brave-Browser\Update\CrashReports"
+rmdir /s /q "C:\Program Files (x86)\BraveSoftware\Brave-Browser\Update\Temp"
 REM Delete Vpn
-del /f /q "%drive%:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave_vpn_maner.exe"
+del /f /q "C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave_vpn_maner.exe"
 rmdir /s /q "%drive%:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\BraveVpnWireguardService"
 REM Remove Brave sch update tasks
 schtasks /Delete /TN "BraveSoftwareUpdateTaskMachineCore" /F >nul 2>&1
