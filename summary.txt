@@ -1,0 +1,111 @@
+What Useless.bat does:
+
+Services disabled:
+
+DiagTrack (Connected User Experiences and Telemetry)
+dmwappushservice
+WaaSMedicSvc
+DiagSvc
+diagnosticshub.standardcollector.service
+SysMain (Superfetch)
+RemoteAccess
+RemoteRegistry
+Remote Desktop Services
+UEV (User Experience Virtualization)
+Beep
+1394ohci (FireWire controller)
+flpydisk (Floppy Disk Controller)
+
+Disabled scheduled tasks:
+
+Microsoft Compatibility Appraiser
+ProgramDataUpdater
+StartupAppTask
+Consolidator
+UsbCeip
+KernelCeipTask
+FamilySafetyMonitor
+FamilySafetyRefresh
+MapsUpdateTask
+Feedback and error reporting tasks
+Windows Error Reporting
+DiskDiagnosticDataCollector
+QueueReporting
+
+Telemetry and data collection disabled:
+
+Windows telemetry (set to 0 or Security level)
+AppCompat
+Device Metadata
+Inventory Collector
+SettingSync (Settings Sync)
+ContentDeliveryManager
+Windows Error Reporting
+Activity Feed and Timeline
+Input Personalization
+Handwriting and Voice Data Collection
+Diagnostic event listeners and autologgers (WiFi, NVIDIA, Kernel, Diagtrack, etc.)
+CEIP (Customer Experience Improvement Program)
+Help Experience Program
+
+Disabled features:
+
+Windows Copilot
+Cortana
+Bing Search and Web Search in Start Menu
+News and Interests
+GameDVR, GameBar, Xbox services
+Storage Sense
+Fast Startup and Hibernation
+Remote Assistance
+Your Phone / Link to Windows
+Sticky Keys and other accessibility features
+Lock Screen ads, tips, and notifications
+Feedback Hub and Feedback Notifications
+App suggestions in Start Menu
+Camera on lock screen
+Automatic app reinstall scheduling
+Experimental Windows features
+Background apps and SmartScreen protections
+SMB1 Protocol
+Windows Insider features
+Search suggestions and cloud suggestions
+Online speech recognition and text prediction
+
+Microsoft Edge optimizations and disables:
+
+Startup Boost
+Background mode
+Sidebar and widgets
+Bing integration and notifications
+Preloading and content suggestions
+
+Interface tweaks:
+
+Show file extensions and hidden files (including optionally protected OS files)
+Disable taskbar widgets
+Restore classic Windows 10 context menu (if on Windows 11)
+Remove Home and Gallery from File Explorer
+Disable window transparency effects
+Clean up Start Menu (remove recommendations, unwanted apps)
+Remove unnecessary settings tabs and suggestions
+
+System optimizations:
+
+Faster app and system shutdown (tweaks to WaitToKillAppTimeout, HungAppTimeout)
+Disable local password expiration
+Disable auto feedback requests
+Add templates for creating .bat and .reg files
+Disable Delivery Optimization
+Disable shell preloading
+Disable Windows Recovery Environment (WinRE) error reporting
+Disable forced restarts
+
+Privacy enhancements:
+
+Disable syncing of passwords, themes, Windows settings, browsing and search history, and app activity
+Disable location services and geolocation
+Disable position history
+Disable cloud sync features
+Disable voice and handwriting diagnostics
+Disable user activity tracking
