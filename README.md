@@ -11,3 +11,5 @@ This repo contains tweaks and scripts I use and create to optimize stuff on Wind
 - Simple tools to make Windows cleaner and faster  
 
 Use everything at your own risk, but nothing here should cause problems.
+
+If you want a breakdown of what Useless.bat does (biggest script) just check scriptbreakdown.txt.
