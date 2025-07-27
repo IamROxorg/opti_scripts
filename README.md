@@ -12,4 +12,4 @@ This repo contains tweaks and scripts I use and create to optimize stuff on Wind
 
 Use everything at your own risk, but nothing here should cause problems.
 
-If you want a breakdown of what Useless.bat does (biggest script) just check scriptbreakdown.txt.
+For a detailed explanation of what Useless.bat (the largest script) does, see summary.txt.
