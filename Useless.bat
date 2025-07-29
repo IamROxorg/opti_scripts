@@ -514,3 +514,16 @@ schtasks /Change /TN "\Microsoft\Windows\UpdateOrchestrator\Schedule Scan" /Disa
 schtasks /Change /TN "\Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task" /Disable
 schtasks /Change /TN "\Microsoft\Windows\UpdateOrchestrator\UpdateModelTask" /Disable
 schtasks /Change /TN "\Microsoft\Windows\UpdateOrchestrator\USO_UxBroker" /Disable
+
+REM Disable Remote Desktop
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
+
+REM Stop and disable Remote Desktop services
+sc stop TermService
+sc config TermService start= disabled
+sc stop UmRdpService
+sc config UmRdpService start= disabled
+
+REM  Remove optional RDP capabilities 
+powershell -Command "Get-WindowsCapability -Online ^| Where-Object { $_.Name -like '*RemoteDesktop*' } ^| ForEach-Object { Remove-WindowsCapability -Online -Name $_.Name }"
