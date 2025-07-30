@@ -35,5 +35,11 @@ REM -- Disable Fault Tolerant Heap (FTH), which can slow down apps
 reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\FTH" /v Enabled /t REG_DWORD /d 0 /f >nul 2>&1
 
 REM -- Enable Hardware Accelerated GPU Scheduling (HAGS)
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" /t REG_DWORD /d 2 /f >nul 2>&1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" /t REG_DWORD /d 2 /f 
+
+REM --- Bcdedit
+REM Disable Windows boot timeout
+bcdedit /timeout 0
+REM Disable Dynacmic tick
+bcdedit /set disabledynamictick yes
 pause
