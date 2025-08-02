@@ -431,6 +431,8 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\rdpbus" /v Start /
 
 REM --- Disable SMB1 Protocol
 powershell -Command "Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' -NoRestart"
+powershell -Command "Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol-Client' -NoRestart"
+powershell -Command "Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol-Server' -NoRestart"
 
 REM --- Make system faster
 
@@ -622,3 +624,4 @@ sc config UmRdpService start= disabled
 
 REM ---  Remove optional RDP capabilities 
 powershell -Command "Get-WindowsCapability -Online ^| Where-Object { $_.Name -like '*RemoteDesktop*' } ^| ForEach-Object { Remove-WindowsCapability -Online -Name $_.Name }"
+
