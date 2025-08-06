@@ -624,7 +624,70 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v EnableActivityFeed 
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v PublishUserActivities /t REG_DWORD /d 0 /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v UploadUserActivities /t REG_DWORD /d 0 /f
 
+
+:: Disable Cloud Consumer Account State Content (adding missing subkeys)
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\CloudContent" /v "DisableConsumerAccountStateContent" /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\CloudContent" /v "CloudConsumerAccountState" /t REG_DWORD /d 0 /f
+reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\CloudContent" /v "DisableConsumerAccountStateContent" /t REG_DWORD /d 1 /f
+
+:: Disable OneDrive (force stop process + disable startup + group policy)
+taskkill /f /im OneDrive.exe >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisableFileSyncNGSC" /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\OneDrive" /v "UserFolderMove" /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\OneDrive" /v "DisablePersonalSync" /t REG_DWORD /d 1 /f
+sc config OneSyncSvc start= disabled
+net stop OneSyncSvc >nul 2>&1
+
+:: Disable OneDrive Network Traffic Pre User SignIn (indirect via policy)
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisablePreSignInNetworkTraffic" /t REG_DWORD /d 1 /f
+
+:: Disable OneSettings Downloads (partial, disables some OneSettings auto downloads)
+reg add "HKLM\Software\Microsoft\OneSettings" /v "NoAutoDownload" /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\OneSettings" /v "NoAutoDownload" /t REG_DWORD /d 1 /f
+
+:: Show Detailed Data Usage (no explicit key, disable data usage monitoring)
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataUsage" /v "PreventDataUsageTracking" /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DataUsage" /v "DataUsageMonitoringEnabled" /t REG_DWORD /d 0 /f
+
+
+:: Disable Auto Map Download (no known registry key available)
+:: --> No action possible via registry, might require firewall or advanced policies.
+
+:: Disable Biometrics (face, fingerprint)
+reg add "HKLM\SOFTWARE\Microsoft\Biometrics" /v "Enabled" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Microsoft\Biometrics\Credential Provider" /v "Enabled" /t REG_DWORD /d 0 /f
+sc config WbioSrvc start= disabled
+net stop WbioSrvc >nul 2>&1
+
+:: Disable Handwriting Data Sharing & Error Reporting
+reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitTextCollection" /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitInkCollection" /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\InputPersonalization" /v "TailoredExperiencesWithDiagnosticDataEnabled" /t REG_DWORD /d 0 /f
+
+:: Disable Hardware Keyboard Word Suggestions (attempt)
+reg add "HKCU\Software\Microsoft\TabletTip\1.7" /v "EnableHwkbPrediction" /t REG_DWORD /d 0 /f
+
+:: Disable Help Make Narrator Better (narrator feedback)
+reg add "HKCU\Software\Microsoft\Narrator" /v "NoFeedback" /t REG_DWORD /d 1 /f
+
+:: Disable Inventory Collector (telemetry service)
+sc config DiagTrack start= disabled
+net stop DiagTrack >nul 2>&1
+
+:: Disable Message Service Cloud Sync (no known key)
+:: --> No registry keys known, may require firewall or advanced policy.
+
+:: Disable Multilingual Text Prediction
+reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictMultilingualTextPrediction" /t REG_DWORD /d 1 /f
+
+:: Disable Notifications on Lock Screen
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications" /v "NoToastApplicationNotificationOnLockScreen" /t REG_DWORD /d 1 /f
+
+:: Disable Steps Recorder (no registry key; disabling related service)
+sc config "werSvc" start= disabled
+net stop "werSvc" >nul 2>&1
 echo Press any key to exit...
 pause  
+
 
 
