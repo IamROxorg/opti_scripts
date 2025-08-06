@@ -601,6 +601,30 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "Disable-AppBackgroundTas
 
 echo Background diagnostics disabled.
 
+:: Disable App Suggestions in Windows Ink Workspace
+:: Turns off suggested apps in the Windows Ink Workspace
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\PenWorkspace" /v PenWorkspaceAppSuggestionsEnabled /t REG_DWORD /d 0 /f
+
+:: Disable Bluetooth Advertising
+:: Disables Bluetooth LE advertisements
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\BthAdvLEEnumerator" /v Start /t REG_DWORD /d 4 /f
+
+:: Complete Disable Cloud Optimized Content
+:: Turns off even more content delivery options
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v FeatureManagementEnabled /t REG_DWORD /d 0 /f
+
+:: Disable My People App Suggestions
+:: Completely disables the People bar and suggestions
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\People" /v PeopleBand /t REG_DWORD /d 0 /f
+
+:: Disable Suggestions in Timeline
+:: Prevents Windows Timeline from suggesting content
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v EnableActivityFeed /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v PublishUserActivities /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v UploadUserActivities /t REG_DWORD /d 0 /f
+
 echo Press any key to exit...
 pause  
+
 
